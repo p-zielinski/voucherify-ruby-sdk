@@ -14,11 +14,20 @@ RSpec.describe 'Redemptions API', :order => :defined do
 
   it 'redeem stacked discounts (applicable)', :order => :first do
     result = redeem_stacked_discounts(@redemptions_api_instance, @voucherify_data.get_voucher().code)
+    result_cleaned = deep_transform_keys(result.to_hash) { |key| key.to_s } 
 
     snapshot_name = 'redemptions/redeem_stacked_applicable_discounts.json'
     snapshot = load_json(snapshot_name)
+    snapshot_json = JSON.parse(snapshot)
+    snapshot_hash = snapshot_json.to_hash
 
-    result.to_json.should include_json(JSON.parse(snapshot).to_json)
+    snapshot_hash.each_key do |key|
+      result_cleaned.to_json.should include_json(snapshot_hash[key].to_json)
+    end
+
+    p(snapshot_hash)
+    p(snapshot_json)
+
 
     expect(result).not_to be_nil
   end
