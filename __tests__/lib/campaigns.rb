@@ -112,6 +112,7 @@ def create_loyalty_campaign(campaigns_api_instance)
                 }
             }
         })
+        return campaign
     end
 end
 
@@ -125,5 +126,24 @@ def delete_campaign(campaigns_api_instance, campaign_id)
     end
 end
 
-
+def add_vouchers_to_campaign(campaigns_api_instance, campaign_id, voucher_count)
+    begin
+      vouchers = []
+  
+      voucher_count.times do
+        voucher = campaigns_api_instance.add_vouchers_to_campaign(
+          campaign_id,
+          {
+            vouchers_count: 1
+          }
+        )
+        vouchers << voucher.code
+      end
+  
+      return vouchers
+    rescue VoucherifySdk::ApiError => e
+      puts e
+      return nil
+    end
+  end
 
