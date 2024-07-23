@@ -4,6 +4,7 @@ All URIs are relative to *https://api.voucherify.io*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**add_promotion_tier_to_campaign**](PromotionsApi.md#add_promotion_tier_to_campaign) | **POST** /v1/promotions/{campaignId}/tiers | Add Promotion Tier to Campaign |
 | [**create_promotion_stack**](PromotionsApi.md#create_promotion_stack) | **POST** /v1/promotions/{campaignId}/stacks | Create Promotion Stack |
 | [**delete_promotion_stack**](PromotionsApi.md#delete_promotion_stack) | **DELETE** /v1/promotions/{campaignId}/stacks/{stackId} | Delete Promotion Stack |
 | [**delete_promotion_tier**](PromotionsApi.md#delete_promotion_tier) | **DELETE** /v1/promotions/tiers/{promotionTierId} | Delete Promotion Tier |
@@ -15,6 +16,69 @@ All URIs are relative to *https://api.voucherify.io*
 | [**list_promotion_stacks_in_campaign**](PromotionsApi.md#list_promotion_stacks_in_campaign) | **GET** /v1/promotions/{campaignId}/stacks | List Promotion Stacks in Campaign |
 | [**list_promotion_tiers_from_campaign**](PromotionsApi.md#list_promotion_tiers_from_campaign) | **GET** /v1/promotions/{campaignId}/tiers | List Promotion Tiers from Campaign |
 | [**update_promotion_stack**](PromotionsApi.md#update_promotion_stack) | **PUT** /v1/promotions/{campaignId}/stacks/{stackId} | Update Promotion Stack |
+| [**update_promotion_tier**](PromotionsApi.md#update_promotion_tier) | **PUT** /v1/promotions/tiers/{promotionTierId} | Update Promotion Tier |
+
+
+## add_promotion_tier_to_campaign
+
+> <PromotionsTiersCreateResponseBody> add_promotion_tier_to_campaign(campaign_id, opts)
+
+Add Promotion Tier to Campaign
+
+This method allows you to add a new promotion tier to an existing campaign. The tier hierarchy will be set as the next consequtive integer following the lowest ranking tier.
+
+### Examples
+
+```ruby
+require 'time'
+require 'VoucherifySdk'
+# setup authorization
+VoucherifySdk.configure do |config|
+  # Configure API key authorization: X-App-Id
+  config.api_key['X-App-Id'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-App-Id'] = 'Bearer'
+
+  # Configure API key authorization: X-App-Token
+  config.api_key['X-App-Token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-App-Token'] = 'Bearer'
+end
+
+api_instance = VoucherifySdk::PromotionsApi.new
+campaign_id = 'campaign_id_example' # String | Unique campaign ID assigned by Voucherify.
+opts = {
+  promotions_tiers_create_request_body: VoucherifySdk::PromotionsTiersCreateRequestBody.new # PromotionsTiersCreateRequestBody | Specify the promotion tier parameters.
+}
+
+begin
+  # Add Promotion Tier to Campaign
+  result = api_instance.add_promotion_tier_to_campaign(campaign_id, opts)
+  p result
+rescue VoucherifySdk::ApiError => e
+  puts "Error when calling PromotionsApi->add_promotion_tier_to_campaign: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **campaign_id** | **String** | Unique campaign ID assigned by Voucherify. |  |
+| **promotions_tiers_create_request_body** | [**PromotionsTiersCreateRequestBody**](PromotionsTiersCreateRequestBody.md) | Specify the promotion tier parameters. | [optional] |
+
+### Return type
+
+[**PromotionsTiersCreateResponseBody**](PromotionsTiersCreateResponseBody.md)
+
+### Authorization
+
+[X-App-Id](../README.md#X-App-Id), [X-App-Token](../README.md#X-App-Token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## create_promotion_stack
@@ -666,6 +730,68 @@ end
 ### Return type
 
 [**PromotionsStacksUpdateResponseBody**](PromotionsStacksUpdateResponseBody.md)
+
+### Authorization
+
+[X-App-Id](../README.md#X-App-Id), [X-App-Token](../README.md#X-App-Token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## update_promotion_tier
+
+> <PromotionsTiersUpdateResponseBody> update_promotion_tier(promotion_tier_id, opts)
+
+Update Promotion Tier
+
+This method updates a promotion tier.
+
+### Examples
+
+```ruby
+require 'time'
+require 'VoucherifySdk'
+# setup authorization
+VoucherifySdk.configure do |config|
+  # Configure API key authorization: X-App-Id
+  config.api_key['X-App-Id'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-App-Id'] = 'Bearer'
+
+  # Configure API key authorization: X-App-Token
+  config.api_key['X-App-Token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-App-Token'] = 'Bearer'
+end
+
+api_instance = VoucherifySdk::PromotionsApi.new
+promotion_tier_id = 'promotion_tier_id_example' # String | Unique promotion tier ID.
+opts = {
+  promotions_tiers_update_request_body: VoucherifySdk::PromotionsTiersUpdateRequestBody.new # PromotionsTiersUpdateRequestBody | Specify the promotion tier parameters that you would like to update.
+}
+
+begin
+  # Update Promotion Tier
+  result = api_instance.update_promotion_tier(promotion_tier_id, opts)
+  p result
+rescue VoucherifySdk::ApiError => e
+  puts "Error when calling PromotionsApi->update_promotion_tier: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **promotion_tier_id** | **String** | Unique promotion tier ID. |  |
+| **promotions_tiers_update_request_body** | [**PromotionsTiersUpdateRequestBody**](PromotionsTiersUpdateRequestBody.md) | Specify the promotion tier parameters that you would like to update. | [optional] |
+
+### Return type
+
+[**PromotionsTiersUpdateResponseBody**](PromotionsTiersUpdateResponseBody.md)
 
 ### Authorization
 

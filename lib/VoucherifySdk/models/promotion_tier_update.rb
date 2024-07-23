@@ -14,10 +14,42 @@ require 'date'
 require 'time'
 
 module VoucherifySdk
-  class ValidationsRedeemableSkippedDetails
-    attr_accessor :key
+  # This is an object representing a promotion tier. Promotion tiers are always assigned to a campaign and cannot be used standalone.
+  class PromotionTierUpdate
+    # Name of the promotion tier.
+    attr_accessor :name
 
-    attr_accessor :message
+    # Text to be displayed to your customers on your website.
+    attr_accessor :banner
+
+    attr_accessor :action
+
+    # The metadata object stores all custom attributes assigned to the promotion tier. A set of key/value pairs that you can attach to a promotion tier object. It can be useful for storing additional information about the promotion tier in a structured format.
+    attr_accessor :metadata
+
+    # The promotions hierarchy defines the order in which the discounts from different tiers will be applied to a customer's order. If a customer qualifies for discounts from more than one tier, discounts will be applied in the order defined in the hierarchy.
+    attr_accessor :hierarchy
+
+    # Activation timestamp defines when the promotion tier starts to be active in ISO 8601 format. Promotion tier is *inactive before* this date. 
+    attr_accessor :start_date
+
+    # Activation timestamp defines when the promotion tier expires in ISO 8601 format. Promotion tier is *inactive after* this date. 
+    attr_accessor :expiration_date
+
+    attr_accessor :validity_timeframe
+
+    # Integer array corresponding to the particular days of the week in which the voucher is valid.  - `0` Sunday - `1` Monday - `2` Tuesday - `3` Wednesday - `4` Thursday - `5` Friday - `6` Saturday
+    attr_accessor :validity_day_of_week
+
+    attr_accessor :validity_hours
+
+    attr_accessor :validation_rule_assignments
+
+    # Assign a new or update the promotion tier's category using name.
+    attr_accessor :category
+
+    # Assign a new or update the promotion tier's category using id
+    attr_accessor :category_id
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -44,8 +76,19 @@ module VoucherifySdk
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'key' => :'key',
-        :'message' => :'message'
+        :'name' => :'name',
+        :'banner' => :'banner',
+        :'action' => :'action',
+        :'metadata' => :'metadata',
+        :'hierarchy' => :'hierarchy',
+        :'start_date' => :'start_date',
+        :'expiration_date' => :'expiration_date',
+        :'validity_timeframe' => :'validity_timeframe',
+        :'validity_day_of_week' => :'validity_day_of_week',
+        :'validity_hours' => :'validity_hours',
+        :'validation_rule_assignments' => :'validation_rule_assignments',
+        :'category' => :'category',
+        :'category_id' => :'category_id'
       }
     end
 
@@ -57,40 +100,97 @@ module VoucherifySdk
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'key' => :'String',
-        :'message' => :'String'
+        :'name' => :'String',
+        :'banner' => :'String',
+        :'action' => :'PromotionTierAction',
+        :'metadata' => :'Object',
+        :'hierarchy' => :'Integer',
+        :'start_date' => :'Time',
+        :'expiration_date' => :'Time',
+        :'validity_timeframe' => :'ValidityTimeframe',
+        :'validity_day_of_week' => :'Array<Integer>',
+        :'validity_hours' => :'ValidityHours',
+        :'validation_rule_assignments' => :'ValidationRuleAssignmentsList',
+        :'category' => :'String',
+        :'category_id' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'key',
-        :'message'
+        :'name',
+        :'banner',
+        :'action',
+        :'metadata',
+        :'hierarchy',
+        :'start_date',
+        :'expiration_date',
+        :'category',
+        :'category_id'
       ])
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
-      if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `VoucherifySdk::ValidationsRedeemableSkippedDetails` initialize method"
-      end
-
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
-        if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `VoucherifySdk::ValidationsRedeemableSkippedDetails`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
-        end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'key')
-        self.key = attributes[:'key']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'banner')
+        self.banner = attributes[:'banner']
+      end
+
+      if attributes.key?(:'action')
+        self.action = attributes[:'action']
+      end
+
+      if attributes.key?(:'metadata')
+        self.metadata = attributes[:'metadata']
+      end
+
+      if attributes.key?(:'hierarchy')
+        self.hierarchy = attributes[:'hierarchy']
+      end
+
+      if attributes.key?(:'start_date')
+        self.start_date = attributes[:'start_date']
+      end
+
+      if attributes.key?(:'expiration_date')
+        self.expiration_date = attributes[:'expiration_date']
+      end
+
+      if attributes.key?(:'validity_timeframe')
+        self.validity_timeframe = attributes[:'validity_timeframe']
+      end
+
+      if attributes.key?(:'validity_day_of_week')
+        if (value = attributes[:'validity_day_of_week']).is_a?(Array)
+          self.validity_day_of_week = value
+        end
+      end
+
+      if attributes.key?(:'validity_hours')
+        self.validity_hours = attributes[:'validity_hours']
+      end
+
+      if attributes.key?(:'validation_rule_assignments')
+        self.validation_rule_assignments = attributes[:'validation_rule_assignments']
+      end
+
+      if attributes.key?(:'category')
+        self.category = attributes[:'category']
+      end
+
+      if attributes.key?(:'category_id')
+        self.category_id = attributes[:'category_id']
       end
     end
 
@@ -106,19 +206,7 @@ module VoucherifySdk
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      key_validator = EnumAttributeValidator.new('String', ["applicable_redeemables_limit_exceeded", "applicable_redeemables_per_category_limit_exceeded", "applicable_exclusive_redeemables_limit_exceeded", "applicable_exclusive_redeemables_per_category_limit_exceeded", "exclusion_rules_not_met", "preceding_validation_failed"])
-      return false unless key_validator.valid?(@key)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] key Object to be assigned
-    def key=(key)
-      validator = EnumAttributeValidator.new('String', ["applicable_redeemables_limit_exceeded", "applicable_redeemables_per_category_limit_exceeded", "applicable_exclusive_redeemables_limit_exceeded", "applicable_exclusive_redeemables_per_category_limit_exceeded", "exclusion_rules_not_met", "preceding_validation_failed"])
-      unless validator.valid?(key)
-        fail ArgumentError, "invalid value for \"key\", must be one of #{validator.allowable_values}."
-      end
-      @key = key
     end
 
     # Checks equality by comparing each attribute.
@@ -126,8 +214,19 @@ module VoucherifySdk
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          key == o.key &&
-          message == o.message
+          name == o.name &&
+          banner == o.banner &&
+          action == o.action &&
+          metadata == o.metadata &&
+          hierarchy == o.hierarchy &&
+          start_date == o.start_date &&
+          expiration_date == o.expiration_date &&
+          validity_timeframe == o.validity_timeframe &&
+          validity_day_of_week == o.validity_day_of_week &&
+          validity_hours == o.validity_hours &&
+          validation_rule_assignments == o.validation_rule_assignments &&
+          category == o.category &&
+          category_id == o.category_id
     end
 
     # @see the `==` method
@@ -139,7 +238,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [key, message].hash
+      [name, banner, action, metadata, hierarchy, start_date, expiration_date, validity_timeframe, validity_day_of_week, validity_hours, validation_rule_assignments, category, category_id].hash
     end
 
     # Builds the object from hash
