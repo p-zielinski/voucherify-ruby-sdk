@@ -1,6 +1,8 @@
 require_relative '../lib/config.rb'
 require_relative '../lib/voucherify_data.rb'
 require 'VoucherifySdk'
+require_relative 'support/snapshot_helper'
+require_relative 'support/remove_keys_process'
 
 RSpec.describe 'Validation Rules API', :order => :defined do
   before(:each) do
@@ -20,6 +22,10 @@ RSpec.describe 'Validation Rules API', :order => :defined do
     created_validation_rule_assignment = @validation_rules_api_instance.create_validation_rule_assignment(validation_rule.id, {
         validation_rules_assignments_create_request_body: validationRulesAssignmentsCreateRequestBody
     })
+    puts created_validation_rule_assignment, 'RULE ASSIGNMENT'
+    snapshot_name = 'validation_rules/created_validation_rule_assignment'
+      keys_to_remove = ['id', 'rule_id', 'related_object_id', 'created_at']
+      filtered_snapshot, filtered_result = validate_payloads(snapshot_name, created_validation_rule_assignment, keys_to_remove)
 
     expect(created_validation_rule_assignment).not_to be_nil
     expect(created_validation_rule_assignment.id).not_to be_nil
@@ -28,6 +34,7 @@ RSpec.describe 'Validation Rules API', :order => :defined do
     expect(created_validation_rule_assignment.related_object_id).to eq(voucher.id)
     expect(created_validation_rule_assignment.related_object_type).to eq("voucher")
     expect(created_validation_rule_assignment.object).to eq("validation_rules_assignment")
+    expect(filtered_snapshot).to eq(filtered_result)
   end
 
 end

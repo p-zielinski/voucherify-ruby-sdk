@@ -15,23 +15,27 @@ RSpec.describe 'Redemptions API', :order => :defined do
     result = redeem_stacked_discounts(@redemptions_api_instance, @voucherify_data.get_voucher().code)
 
     snapshot_name = 'redemptions/redeem_stacked_applicable_discounts'
-    keys_to_remove = [:id, :campaign_id, :campaign, :holder_id, :created_at, :updated_at, :date, :related_object_parent_id, :related_object_id, :stacked]
+    keys_to_remove = ['id', 'date', 'created_at', 'code', 'campaign', 'campaign_id', 'updated_at', 'holder_id', 'redemptions']
     filtered_snapshot, filtered_result = validate_payloads(snapshot_name, result, keys_to_remove)
 
     expect(result).not_to be_nil
+    expect(result.redemptions).to be_an(Array)
+    expect(result.order).to be_a(VoucherifySdk::OrderCalculated)
     expect(filtered_snapshot).to eq(filtered_result)
   end
 
   it 'redeem stacked discounts (skipped)', :order => :second do
     vouchers = add_vouchers_to_campaign(@campaigns_api_instance, @voucherify_data.get_discount_campaign().id(), 30)
-
     result = redeem_stacked_discounts(@redemptions_api_instance, vouchers)
 
     snapshot_name = 'redemptions/redeem_stacked_skipped_discounts'
-    keys_to_remove = [:id, :campaign_id, :campaign, :created_at, :updated_at, :date, :related_object_parent_id, :related_object_id, :stacked]
+    keys_to_remove = ['id', 'date', 'code', 'campaign', 'campaign_id', 'created_at', 'updated_at', 'redemption', 'redemptions']
     filtered_snapshot, filtered_result = validate_payloads(snapshot_name, result, keys_to_remove)
 
     expect(result).not_to be_nil
+    expect(result.redemptions).to be_an(Array)
+    expect(result.order).to be_a(VoucherifySdk::OrderCalculated)
+    expect(result.skipped_redeemables).to be_an(Array)
     expect(filtered_snapshot).to eq(filtered_result)
   end
   

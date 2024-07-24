@@ -26,7 +26,7 @@ RSpec.describe 'Validations API', :order => :defined do
     )
 
     snapshot_name = 'validations/applicable_stacked_validation'
-    keys_to_remove = [:id, :product_id, :customer_id, :tracking_id]
+    keys_to_remove = ['id', 'product_id', 'customer_id', 'tracking_id']
     filtered_snapshot, filtered_result = validate_payloads(snapshot_name, $validation_result_successful, keys_to_remove)
     
     expect($validation_result_successful).not_to be_nil
@@ -43,7 +43,7 @@ RSpec.describe 'Validations API', :order => :defined do
     redeemable = $validation_result_successful.redeemables.first
 
     snapshot_name = 'validations/redeemable_items_necessary_keys'
-    keys_to_remove = [:id, :product_id, :customer_id]
+    keys_to_remove = ['id', 'product_id', 'customer_id']
     filtered_snapshot, filtered_result = validate_payloads(snapshot_name, redeemable, keys_to_remove)
 
     expect(redeemable.status).to eq("APPLICABLE")
@@ -60,7 +60,7 @@ RSpec.describe 'Validations API', :order => :defined do
     order = $validation_result_successful.order
 
     snapshot_name = 'validations/validations_succesful_order'
-    keys_to_remove = [:id, :product_id, :customer_id]
+    keys_to_remove = ['id', 'product_id', 'customer_id']
     filtered_snapshot, filtered_result = validate_payloads(snapshot_name, order, keys_to_remove)
 
     expect(order).not_to be_nil
@@ -106,8 +106,13 @@ RSpec.describe 'Validations API', :order => :defined do
       $order_amount_failed
     )
 
+    snapshot_name = 'validations/inapplicable_stacked_validation'
+    keys_to_remove = ['id', 'request_id', 'tracking_id', 'details']
+    filtered_snapshot, filtered_result = validate_payloads(snapshot_name, $validation_result_failed, keys_to_remove)
+
     expect($validation_result_failed).not_to be_nil
     expect($validation_result_failed.valid).to be(false)
+    expect(filtered_snapshot).to eq(filtered_result)
   end
 
   it 'validates presence of the redeemables and inapplicable_redeemables (failed)', :order => :ninth do
@@ -149,7 +154,12 @@ RSpec.describe 'Validations API', :order => :defined do
         $order_amount_successful
     )
 
+    snapshot_name = 'validations/skipped_stacked_validation'
+    keys_to_remove = ['id', 'product_id', 'customer_id', 'request_id', 'tracking_id', 'details']
+    filtered_snapshot, filtered_result = validate_payloads(snapshot_name, $validation_result_successful, keys_to_remove)
+
     expect($validation_result_successful).not_to be_nil
+    expect(filtered_snapshot).to eq(filtered_result)
   end
 
 end

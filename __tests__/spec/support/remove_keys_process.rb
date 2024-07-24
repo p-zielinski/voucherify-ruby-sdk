@@ -1,5 +1,4 @@
 # spec/support/remove_keys.rb
-require 'yaml'
 require_relative 'snapshot_helper'
 
 def validate_payloads(snapshot_name, validation_result, keys_to_remove)
@@ -7,10 +6,13 @@ def validate_payloads(snapshot_name, validation_result, keys_to_remove)
   snapshot = load_snapshot(snapshot_name)
   
   # Convert snapshot to hash
-  hashed_snapshot = eval(snapshot)
+  gsub_snapshot = snapshot.gsub(/:(\w+|\$[\w\$]+|".+?"|'.+?')\s*=>/, '"\1":').gsub(/""(.*?)""/, '"\1"').gsub("'", '"').gsub(":nil", ":null").gsub(/(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1,3} UTC)/, '"\1"')
+  hashed_snapshot = JSON.parse(gsub_snapshot)
 
-  # Convert validation result to hash
-  hashed_result = validation_result.to_hash
+  # Convert validation result to hash, next to json and again to hash
+  result = validation_result.to_hash
+  gsub_result = result.to_json.gsub(/:(\w+|\$[\w\$]+|".+?"|'.+?')\s*=>/, '"\1":').gsub(/""(.*?)""/, '"\1"').gsub("'", '"').gsub(":nil", ":null").gsub(/(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1,3} UTC)/, '"\1"')
+  hashed_result = JSON.parse(gsub_result)
 
   # Remove specified keys from both hashes
   filtered_snapshot = remove_keys(hashed_snapshot, keys_to_remove)

@@ -1,5 +1,5 @@
 # __tests__/spec/support/snapshot_helper.rb
-
+# 
 module SnapshotHelper
   SNAPSHOT_DIR = File.expand_path('../../snapshots', __FILE__)
 

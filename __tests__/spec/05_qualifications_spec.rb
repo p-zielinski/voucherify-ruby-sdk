@@ -1,5 +1,7 @@
 require_relative '../lib/config.rb'
 require_relative '../lib/voucherify_data.rb'
+require_relative 'support/snapshot_helper'
+require_relative 'support/remove_keys_process'
 
 RSpec.describe 'Qualifications API', :order => :defined do
   before(:each) do
@@ -22,6 +24,11 @@ RSpec.describe 'Qualifications API', :order => :defined do
         })
     })
 
+    snapshot_name = 'qualifications/checked_eligibility'
+    keys_to_remove = ['id', 'created_at', 'tracking_id', 'more_starting_after', 'redeemables']
+    filtered_snapshot, filtered_result = validate_payloads(snapshot_name, result, keys_to_remove)
+
     expect(result).not_to be_nil
+    expect(filtered_snapshot).to eq(filtered_result)
   end
 end
