@@ -40,6 +40,8 @@ module VoucherifySdk
     # Redemption result.
     attr_accessor :result
 
+    attr_accessor :status
+
     attr_accessor :voucher
 
     attr_accessor :promotion_tier
@@ -84,6 +86,7 @@ module VoucherifySdk
         :'reward' => :'reward',
         :'customer' => :'customer',
         :'result' => :'result',
+        :'status' => :'status',
         :'voucher' => :'voucher',
         :'promotion_tier' => :'promotion_tier',
         :'redemption' => :'redemption',
@@ -108,6 +111,7 @@ module VoucherifySdk
         :'reward' => :'SimpleRedemptionRewardResult',
         :'customer' => :'SimpleCustomer',
         :'result' => :'String',
+        :'status' => :'String',
         :'voucher' => :'SimpleVoucher',
         :'promotion_tier' => :'SimplePromotionTier',
         :'redemption' => :'String',
@@ -124,6 +128,7 @@ module VoucherifySdk
         :'date',
         :'amount',
         :'result',
+        :'status',
         :'redemption',
         :'object'
       ])
@@ -132,15 +137,8 @@ module VoucherifySdk
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
-      if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `VoucherifySdk::SimpleRedemption` initialize method"
-      end
-
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
-        if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `VoucherifySdk::SimpleRedemption`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
-        end
         h[k.to_sym] = v
       }
 
@@ -180,6 +178,10 @@ module VoucherifySdk
         self.result = attributes[:'result']
       end
 
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
       if attributes.key?(:'voucher')
         self.voucher = attributes[:'voucher']
       end
@@ -213,17 +215,9 @@ module VoucherifySdk
       warn '[DEPRECATED] the `valid?` method is obsolete'
       result_validator = EnumAttributeValidator.new('String', ["SUCCESS", "FAILURE"])
       return false unless result_validator.valid?(@result)
+      status_validator = EnumAttributeValidator.new('String', ["SUCCEEDED", "FAILED", "ROLLED BACK"])
+      return false unless status_validator.valid?(@status)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] result Object to be assigned
-    def result=(result)
-      validator = EnumAttributeValidator.new('String', ["SUCCESS", "FAILURE"])
-      unless validator.valid?(result)
-        fail ArgumentError, "invalid value for \"result\", must be one of #{validator.allowable_values}."
-      end
-      @result = result
     end
 
     # Checks equality by comparing each attribute.
@@ -240,6 +234,7 @@ module VoucherifySdk
           reward == o.reward &&
           customer == o.customer &&
           result == o.result &&
+          status == o.status &&
           voucher == o.voucher &&
           promotion_tier == o.promotion_tier &&
           redemption == o.redemption &&
@@ -255,7 +250,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, customer_id, tracking_id, date, amount, order, reward, customer, result, voucher, promotion_tier, redemption, object].hash
+      [id, customer_id, tracking_id, date, amount, order, reward, customer, result, status, voucher, promotion_tier, redemption, object].hash
     end
 
     # Builds the object from hash

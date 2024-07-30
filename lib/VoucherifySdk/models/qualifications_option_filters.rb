@@ -32,6 +32,8 @@ module VoucherifySdk
 
     attr_accessor :code
 
+    attr_accessor :holder_role
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -64,7 +66,8 @@ module VoucherifySdk
         :'resource_id' => :'resource_id',
         :'resource_type' => :'resource_type',
         :'voucher_type' => :'voucher_type',
-        :'code' => :'code'
+        :'code' => :'code',
+        :'holder_role' => :'holder_role'
       }
     end
 
@@ -83,7 +86,8 @@ module VoucherifySdk
         :'resource_id' => :'QualificationsFieldConditions',
         :'resource_type' => :'QualificationsOptionFiltersResourceType',
         :'voucher_type' => :'QualificationsFieldConditions',
-        :'code' => :'QualificationsFieldConditions'
+        :'code' => :'QualificationsFieldConditions',
+        :'holder_role' => :'HolderRole'
       }
     end
 
@@ -92,21 +96,15 @@ module VoucherifySdk
       Set.new([
         :'campaign_type',
         :'resource_type',
+        :'holder_role'
       ])
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
-      if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `VoucherifySdk::QualificationsOptionFilters` initialize method"
-      end
-
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
-        if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `VoucherifySdk::QualificationsOptionFilters`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
-        end
         h[k.to_sym] = v
       }
 
@@ -141,6 +139,10 @@ module VoucherifySdk
       if attributes.key?(:'code')
         self.code = attributes[:'code']
       end
+
+      if attributes.key?(:'holder_role')
+        self.holder_role = attributes[:'holder_role']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -170,7 +172,8 @@ module VoucherifySdk
           resource_id == o.resource_id &&
           resource_type == o.resource_type &&
           voucher_type == o.voucher_type &&
-          code == o.code
+          code == o.code &&
+          holder_role == o.holder_role
     end
 
     # @see the `==` method
@@ -182,7 +185,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [junction, category_id, campaign_id, campaign_type, resource_id, resource_type, voucher_type, code].hash
+      [junction, category_id, campaign_id, campaign_type, resource_id, resource_type, voucher_type, code, holder_role].hash
     end
 
     # Builds the object from hash

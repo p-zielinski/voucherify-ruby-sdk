@@ -144,6 +144,8 @@ All URIs are relative to *https://api.voucherify.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*VoucherifySdk::AsyncActionsApi* | [**get_async_action**](docs/AsyncActionsApi.md#get_async_action) | **GET** /v1/async-actions/{asyncActionId} | Get Async Action
+*VoucherifySdk::AsyncActionsApi* | [**list_async_actions**](docs/AsyncActionsApi.md#list_async_actions) | **GET** /v1/async-actions | List Async Actions
 *VoucherifySdk::CampaignsApi* | [**add_voucher_with_specific_code_to_campaign**](docs/CampaignsApi.md#add_voucher_with_specific_code_to_campaign) | **POST** /v1/campaigns/{campaignId}/vouchers/{code} | Add Voucher with Specific Code to Campaign
 *VoucherifySdk::CampaignsApi* | [**add_vouchers_to_campaign**](docs/CampaignsApi.md#add_vouchers_to_campaign) | **POST** /v1/campaigns/{campaignId}/vouchers | Add Vouchers to Campaign
 *VoucherifySdk::CampaignsApi* | [**create_campaign**](docs/CampaignsApi.md#create_campaign) | **POST** /v1/campaigns | Create Campaign
@@ -234,6 +236,7 @@ Class | Method | HTTP request | Description
 *VoucherifySdk::ProductsApi* | [**update_products_in_bulk**](docs/ProductsApi.md#update_products_in_bulk) | **POST** /v1/products/bulk/async | Update Products in bulk
 *VoucherifySdk::ProductsApi* | [**update_products_metadata_in_bulk**](docs/ProductsApi.md#update_products_metadata_in_bulk) | **POST** /v1/products/metadata/async | Update Products' Metadata in bulk
 *VoucherifySdk::ProductsApi* | [**update_sku**](docs/ProductsApi.md#update_sku) | **PUT** /v1/products/{productId}/skus/{skuId} | Update SKU
+*VoucherifySdk::PromotionsApi* | [**add_promotion_tier_to_campaign**](docs/PromotionsApi.md#add_promotion_tier_to_campaign) | **POST** /v1/promotions/{campaignId}/tiers | Add Promotion Tier to Campaign
 *VoucherifySdk::PromotionsApi* | [**create_promotion_stack**](docs/PromotionsApi.md#create_promotion_stack) | **POST** /v1/promotions/{campaignId}/stacks | Create Promotion Stack
 *VoucherifySdk::PromotionsApi* | [**delete_promotion_stack**](docs/PromotionsApi.md#delete_promotion_stack) | **DELETE** /v1/promotions/{campaignId}/stacks/{stackId} | Delete Promotion Stack
 *VoucherifySdk::PromotionsApi* | [**delete_promotion_tier**](docs/PromotionsApi.md#delete_promotion_tier) | **DELETE** /v1/promotions/tiers/{promotionTierId} | Delete Promotion Tier
@@ -245,6 +248,7 @@ Class | Method | HTTP request | Description
 *VoucherifySdk::PromotionsApi* | [**list_promotion_stacks_in_campaign**](docs/PromotionsApi.md#list_promotion_stacks_in_campaign) | **GET** /v1/promotions/{campaignId}/stacks | List Promotion Stacks in Campaign
 *VoucherifySdk::PromotionsApi* | [**list_promotion_tiers_from_campaign**](docs/PromotionsApi.md#list_promotion_tiers_from_campaign) | **GET** /v1/promotions/{campaignId}/tiers | List Promotion Tiers from Campaign
 *VoucherifySdk::PromotionsApi* | [**update_promotion_stack**](docs/PromotionsApi.md#update_promotion_stack) | **PUT** /v1/promotions/{campaignId}/stacks/{stackId} | Update Promotion Stack
+*VoucherifySdk::PromotionsApi* | [**update_promotion_tier**](docs/PromotionsApi.md#update_promotion_tier) | **PUT** /v1/promotions/tiers/{promotionTierId} | Update Promotion Tier
 *VoucherifySdk::PublicationsApi* | [**create_publication**](docs/PublicationsApi.md#create_publication) | **POST** /v1/publications | Create Publication
 *VoucherifySdk::PublicationsApi* | [**create_publication1**](docs/PublicationsApi.md#create_publication1) | **GET** /v1/publications/create | Create Publication
 *VoucherifySdk::PublicationsApi* | [**list_publications**](docs/PublicationsApi.md#list_publications) | **GET** /v1/publications | List Publications
@@ -255,13 +259,19 @@ Class | Method | HTTP request | Description
 *VoucherifySdk::RedemptionsApi* | [**redeem_stacked_discounts**](docs/RedemptionsApi.md#redeem_stacked_discounts) | **POST** /v1/redemptions | Redeem Stackable Discounts
 *VoucherifySdk::RedemptionsApi* | [**rollback_redemption**](docs/RedemptionsApi.md#rollback_redemption) | **POST** /v1/redemptions/{redemptionId}/rollback | Rollback Redemption
 *VoucherifySdk::RedemptionsApi* | [**rollback_stacked_redemptions**](docs/RedemptionsApi.md#rollback_stacked_redemptions) | **POST** /v1/redemptions/{parentRedemptionId}/rollbacks | Rollback Stackable Redemptions
+*VoucherifySdk::RewardsApi* | [**create_reward**](docs/RewardsApi.md#create_reward) | **POST** /v1/rewards | Create Reward
 *VoucherifySdk::RewardsApi* | [**create_reward_assignment**](docs/RewardsApi.md#create_reward_assignment) | **POST** /v1/rewards/{rewardId}/assignments | Create Reward Assignment
 *VoucherifySdk::RewardsApi* | [**delete_reward**](docs/RewardsApi.md#delete_reward) | **DELETE** /v1/rewards/{rewardId} | Delete Reward
 *VoucherifySdk::RewardsApi* | [**delete_reward_assignment**](docs/RewardsApi.md#delete_reward_assignment) | **DELETE** /v1/rewards/{rewardId}/assignments/{assignmentId} | Delete Reward Assignment
+*VoucherifySdk::RewardsApi* | [**get_reward**](docs/RewardsApi.md#get_reward) | **GET** /v1/rewards/{rewardId} | Get Reward
 *VoucherifySdk::RewardsApi* | [**get_reward_assignment**](docs/RewardsApi.md#get_reward_assignment) | **GET** /v1/rewards/{rewardId}/assignments/{assignmentId} | Get Reward Assignment
 *VoucherifySdk::RewardsApi* | [**list_reward_assignments**](docs/RewardsApi.md#list_reward_assignments) | **GET** /v1/rewards/{rewardId}/assignments | List Reward Assignments
+*VoucherifySdk::RewardsApi* | [**list_rewards**](docs/RewardsApi.md#list_rewards) | **GET** /v1/rewards | List Rewards
+*VoucherifySdk::RewardsApi* | [**update_reward**](docs/RewardsApi.md#update_reward) | **PUT** /v1/rewards/{rewardId} | Update Reward
 *VoucherifySdk::RewardsApi* | [**update_reward_assignment**](docs/RewardsApi.md#update_reward_assignment) | **PUT** /v1/rewards/{rewardId}/assignments/{assignmentId} | Update Reward Assignment
+*VoucherifySdk::SegmentsApi* | [**create_segment**](docs/SegmentsApi.md#create_segment) | **POST** /v1/segments | Create Segment
 *VoucherifySdk::SegmentsApi* | [**delete_segment**](docs/SegmentsApi.md#delete_segment) | **DELETE** /v1/segments/{segmentId} | Delete Segment
+*VoucherifySdk::SegmentsApi* | [**get_segment**](docs/SegmentsApi.md#get_segment) | **GET** /v1/segments/{segmentId} | Get Segment
 *VoucherifySdk::ValidationRulesApi* | [**create_validation_rule_assignment**](docs/ValidationRulesApi.md#create_validation_rule_assignment) | **POST** /v1/validation-rules/{validationRuleId}/assignments | Create Validation Rules Assignments
 *VoucherifySdk::ValidationRulesApi* | [**create_validation_rules**](docs/ValidationRulesApi.md#create_validation_rules) | **POST** /v1/validation-rules | Create Validation Rules
 *VoucherifySdk::ValidationRulesApi* | [**delete_validation_rule_assignment**](docs/ValidationRulesApi.md#delete_validation_rule_assignment) | **DELETE** /v1/validation-rules/{validationRuleId}/assignments/{assignmentId} | Delete Validation Rule Assignment
@@ -290,7 +300,11 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::ApplicableToEffect](docs/ApplicableToEffect.md)
  - [VoucherifySdk::ApplicableToResultList](docs/ApplicableToResultList.md)
  - [VoucherifySdk::AreaStoreCampaignAssignment](docs/AreaStoreCampaignAssignment.md)
+ - [VoucherifySdk::AsyncAction](docs/AsyncAction.md)
+ - [VoucherifySdk::AsyncActionBase](docs/AsyncActionBase.md)
+ - [VoucherifySdk::AsyncActionGetResponseBody](docs/AsyncActionGetResponseBody.md)
  - [VoucherifySdk::AsyncActions](docs/AsyncActions.md)
+ - [VoucherifySdk::AsyncActionsListResponseBody](docs/AsyncActionsListResponseBody.md)
  - [VoucherifySdk::BusValRuleAssignment](docs/BusValRuleAssignment.md)
  - [VoucherifySdk::Campaign](docs/Campaign.md)
  - [VoucherifySdk::CampaignBase](docs/CampaignBase.md)
@@ -480,6 +494,8 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::FilterConditionsString](docs/FilterConditionsString.md)
  - [VoucherifySdk::FiltersCondition](docs/FiltersCondition.md)
  - [VoucherifySdk::Gift](docs/Gift.md)
+ - [VoucherifySdk::HolderRole](docs/HolderRole.md)
+ - [VoucherifySdk::HolderRoleConditions](docs/HolderRoleConditions.md)
  - [VoucherifySdk::InapplicableTo](docs/InapplicableTo.md)
  - [VoucherifySdk::InapplicableToResultList](docs/InapplicableToResultList.md)
  - [VoucherifySdk::Junction](docs/Junction.md)
@@ -624,10 +640,12 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::PromotionTier](docs/PromotionTier.md)
  - [VoucherifySdk::PromotionTierAction](docs/PromotionTierAction.md)
  - [VoucherifySdk::PromotionTierCampaign](docs/PromotionTierCampaign.md)
+ - [VoucherifySdk::PromotionTierCreate](docs/PromotionTierCreate.md)
  - [VoucherifySdk::PromotionTierCreateParams](docs/PromotionTierCreateParams.md)
  - [VoucherifySdk::PromotionTierSummary](docs/PromotionTierSummary.md)
  - [VoucherifySdk::PromotionTierSummaryOrders](docs/PromotionTierSummaryOrders.md)
  - [VoucherifySdk::PromotionTierSummaryRedemptions](docs/PromotionTierSummaryRedemptions.md)
+ - [VoucherifySdk::PromotionTierUpdate](docs/PromotionTierUpdate.md)
  - [VoucherifySdk::PromotionTiersList](docs/PromotionTiersList.md)
  - [VoucherifySdk::PromotionsStacksCreateRequestBody](docs/PromotionsStacksCreateRequestBody.md)
  - [VoucherifySdk::PromotionsStacksCreateResponseBody](docs/PromotionsStacksCreateResponseBody.md)
@@ -636,10 +654,14 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::PromotionsStacksUpdateRequestBody](docs/PromotionsStacksUpdateRequestBody.md)
  - [VoucherifySdk::PromotionsStacksUpdateRequestBodyTiers](docs/PromotionsStacksUpdateRequestBodyTiers.md)
  - [VoucherifySdk::PromotionsStacksUpdateResponseBody](docs/PromotionsStacksUpdateResponseBody.md)
+ - [VoucherifySdk::PromotionsTiersCreateRequestBody](docs/PromotionsTiersCreateRequestBody.md)
+ - [VoucherifySdk::PromotionsTiersCreateResponseBody](docs/PromotionsTiersCreateResponseBody.md)
  - [VoucherifySdk::PromotionsTiersDisableResponseBody](docs/PromotionsTiersDisableResponseBody.md)
  - [VoucherifySdk::PromotionsTiersEnableResponseBody](docs/PromotionsTiersEnableResponseBody.md)
  - [VoucherifySdk::PromotionsTiersGetResponseBody](docs/PromotionsTiersGetResponseBody.md)
  - [VoucherifySdk::PromotionsTiersListResponseBody](docs/PromotionsTiersListResponseBody.md)
+ - [VoucherifySdk::PromotionsTiersUpdateRequestBody](docs/PromotionsTiersUpdateRequestBody.md)
+ - [VoucherifySdk::PromotionsTiersUpdateResponseBody](docs/PromotionsTiersUpdateResponseBody.md)
  - [VoucherifySdk::PublicationsCreateRequestBody](docs/PublicationsCreateRequestBody.md)
  - [VoucherifySdk::PublicationsCreateRequestBodyCustomer](docs/PublicationsCreateRequestBodyCustomer.md)
  - [VoucherifySdk::PublicationsCreateRequestBodyCustomerAddress](docs/PublicationsCreateRequestBodyCustomerAddress.md)
@@ -789,6 +811,19 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::RewardsAssignmentsUpdateRequestBodyParameters](docs/RewardsAssignmentsUpdateRequestBodyParameters.md)
  - [VoucherifySdk::RewardsAssignmentsUpdateRequestBodyParametersLoyalty](docs/RewardsAssignmentsUpdateRequestBodyParametersLoyalty.md)
  - [VoucherifySdk::RewardsAssignmentsUpdateResponseBody](docs/RewardsAssignmentsUpdateResponseBody.md)
+ - [VoucherifySdk::RewardsCreateRequestBody](docs/RewardsCreateRequestBody.md)
+ - [VoucherifySdk::RewardsCreateRequestBodyParameters](docs/RewardsCreateRequestBodyParameters.md)
+ - [VoucherifySdk::RewardsCreateRequestBodyParametersCampaign](docs/RewardsCreateRequestBodyParametersCampaign.md)
+ - [VoucherifySdk::RewardsCreateRequestBodyParametersCoin](docs/RewardsCreateRequestBodyParametersCoin.md)
+ - [VoucherifySdk::RewardsCreateRequestBodyParametersProduct](docs/RewardsCreateRequestBodyParametersProduct.md)
+ - [VoucherifySdk::RewardsListResponseBody](docs/RewardsListResponseBody.md)
+ - [VoucherifySdk::RewardsUpdateRequestBody](docs/RewardsUpdateRequestBody.md)
+ - [VoucherifySdk::RewardsUpdateRequestBodyParameters](docs/RewardsUpdateRequestBodyParameters.md)
+ - [VoucherifySdk::RewardsUpdateRequestBodyParametersCampaign](docs/RewardsUpdateRequestBodyParametersCampaign.md)
+ - [VoucherifySdk::Segment](docs/Segment.md)
+ - [VoucherifySdk::SegmentsCreateRequestBody](docs/SegmentsCreateRequestBody.md)
+ - [VoucherifySdk::SegmentsCreateResponseBody](docs/SegmentsCreateResponseBody.md)
+ - [VoucherifySdk::SegmentsGetResponseBody](docs/SegmentsGetResponseBody.md)
  - [VoucherifySdk::Session](docs/Session.md)
  - [VoucherifySdk::SimpleCampaign](docs/SimpleCampaign.md)
  - [VoucherifySdk::SimpleCampaignLuckyDraw](docs/SimpleCampaignLuckyDraw.md)
@@ -851,8 +886,8 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::ValidationsRedeemableInapplicableResult](docs/ValidationsRedeemableInapplicableResult.md)
  - [VoucherifySdk::ValidationsRedeemableInapplicableResultDetails](docs/ValidationsRedeemableInapplicableResultDetails.md)
  - [VoucherifySdk::ValidationsRedeemableSkipped](docs/ValidationsRedeemableSkipped.md)
- - [VoucherifySdk::ValidationsRedeemableSkippedDetails](docs/ValidationsRedeemableSkippedDetails.md)
  - [VoucherifySdk::ValidationsRedeemableSkippedResult](docs/ValidationsRedeemableSkippedResult.md)
+ - [VoucherifySdk::ValidationsRedeemableSkippedResultDetails](docs/ValidationsRedeemableSkippedResultDetails.md)
  - [VoucherifySdk::ValidationsValidateRequestBody](docs/ValidationsValidateRequestBody.md)
  - [VoucherifySdk::ValidationsValidateResponseBody](docs/ValidationsValidateResponseBody.md)
  - [VoucherifySdk::ValidationsValidateResponseBodyRedeemablesItem](docs/ValidationsValidateResponseBodyRedeemablesItem.md)

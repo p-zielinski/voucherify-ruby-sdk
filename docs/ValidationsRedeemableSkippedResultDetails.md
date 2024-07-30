@@ -1,4 +1,4 @@
-# VoucherifySdk::ValidationsRedeemableSkippedDetails
+# VoucherifySdk::ValidationsRedeemableSkippedResultDetails
 
 ## Properties
 

@@ -15,16 +15,19 @@ require 'time'
 
 module VoucherifySdk
   class OrderItem
-    # A unique SKU ID assigned by Voucherify.
+    # The type of the object represented by JSON. This object stores information about the `order_item`.
+    attr_accessor :object
+
+    # Unique identifier of the SKU. It is assigned by Voucherify.
     attr_accessor :sku_id
 
-    # A unique product ID assigned by Voucherify.
+    # Unique identifier of the product. It is assigned by Voucherify.
     attr_accessor :product_id
 
     # Used along with the source_id property, can be set to either sku or product.
     attr_accessor :related_object
 
-    # The merchant’s product/SKU ID (if it is different from the Voucherify product/SKU ID). It is useful in the integration between multiple systems. It can be an ID from an eCommerce site, a database, or a third-party service.
+    # The merchant's product/SKU ID (if it is different from the Voucherify product/SKU ID). It is useful in the integration between multiple systems. It can be an ID from an eCommerce site, a database, or a third-party service.
     attr_accessor :source_id
 
     # The quantity of the particular item in the cart.
@@ -45,14 +48,29 @@ module VoucherifySdk
     # A positive integer in the smallest currency unit (e.g. 100 cents for $1.00) representing the total amount of the order. This is the sum of the order items' amounts.
     attr_accessor :initial_amount
 
+    # Order-level discount amount applied in the transaction.
+    attr_accessor :applied_discount_amount
+
+    # Number of the discounted items applied in the transaction.
+    attr_accessor :applied_discount_quantity
+
+    # Quantity of items changed by the application of a new quantity items. It can be positive when an item is added or negative if an item is replaced.
+    attr_accessor :applied_quantity
+
+    # Amount for the items changed by the application of a new quantity items. It can be positive when an item is added or negative if an item is replaced.
+    attr_accessor :applied_quantity_amount
+
     # Unit price of an item. Value is multiplied by 100 to precisely represent 2 decimal places. For example `10000 cents` for `$100.00`.
     attr_accessor :price
+
+    # Final order item amount after the applied item-level discount.  If there are no item-level discounts applied, this item is equal to the `amount`.    `subtotal_amount`=`amount`-`discount_amount`
+    attr_accessor :subtotal_amount
 
     attr_accessor :product
 
     attr_accessor :sku
 
-    # A set of custom key/value pairs that you can attach to an SKU. It can be useful for storing additional information about the SKU in a structured format.
+    # A set of custom key/value pairs that you can attach to an order item. It can be useful for storing additional information about the order item in a structured format.
     attr_accessor :metadata
 
     class EnumAttributeValidator
@@ -80,6 +98,7 @@ module VoucherifySdk
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'object' => :'object',
         :'sku_id' => :'sku_id',
         :'product_id' => :'product_id',
         :'related_object' => :'related_object',
@@ -90,7 +109,12 @@ module VoucherifySdk
         :'amount' => :'amount',
         :'discount_amount' => :'discount_amount',
         :'initial_amount' => :'initial_amount',
+        :'applied_discount_amount' => :'applied_discount_amount',
+        :'applied_discount_quantity' => :'applied_discount_quantity',
+        :'applied_quantity' => :'applied_quantity',
+        :'applied_quantity_amount' => :'applied_quantity_amount',
         :'price' => :'price',
+        :'subtotal_amount' => :'subtotal_amount',
         :'product' => :'product',
         :'sku' => :'sku',
         :'metadata' => :'metadata'
@@ -105,6 +129,7 @@ module VoucherifySdk
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'object' => :'String',
         :'sku_id' => :'String',
         :'product_id' => :'String',
         :'related_object' => :'String',
@@ -115,7 +140,12 @@ module VoucherifySdk
         :'amount' => :'Integer',
         :'discount_amount' => :'Integer',
         :'initial_amount' => :'Integer',
+        :'applied_discount_amount' => :'Integer',
+        :'applied_discount_quantity' => :'Integer',
+        :'applied_quantity' => :'Integer',
+        :'applied_quantity_amount' => :'Integer',
         :'price' => :'Integer',
+        :'subtotal_amount' => :'Integer',
         :'product' => :'OrderItemCalculatedProduct',
         :'sku' => :'OrderItemCalculatedSku',
         :'metadata' => :'Object'
@@ -125,6 +155,7 @@ module VoucherifySdk
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'object',
         :'sku_id',
         :'product_id',
         :'related_object',
@@ -135,7 +166,12 @@ module VoucherifySdk
         :'amount',
         :'discount_amount',
         :'initial_amount',
+        :'applied_discount_amount',
+        :'applied_discount_quantity',
+        :'applied_quantity',
+        :'applied_quantity_amount',
         :'price',
+        :'subtotal_amount',
         :'product',
         :'sku',
         :'metadata'
@@ -145,17 +181,16 @@ module VoucherifySdk
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
-      if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `VoucherifySdk::OrderItem` initialize method"
-      end
-
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
-        if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `VoucherifySdk::OrderItem`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
-        end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      else
+        self.object = 'order_item'
+      end
 
       if attributes.key?(:'sku_id')
         self.sku_id = attributes[:'sku_id']
@@ -197,8 +232,28 @@ module VoucherifySdk
         self.initial_amount = attributes[:'initial_amount']
       end
 
+      if attributes.key?(:'applied_discount_amount')
+        self.applied_discount_amount = attributes[:'applied_discount_amount']
+      end
+
+      if attributes.key?(:'applied_discount_quantity')
+        self.applied_discount_quantity = attributes[:'applied_discount_quantity']
+      end
+
+      if attributes.key?(:'applied_quantity')
+        self.applied_quantity = attributes[:'applied_quantity']
+      end
+
+      if attributes.key?(:'applied_quantity_amount')
+        self.applied_quantity_amount = attributes[:'applied_quantity_amount']
+      end
+
       if attributes.key?(:'price')
         self.price = attributes[:'price']
+      end
+
+      if attributes.key?(:'subtotal_amount')
+        self.subtotal_amount = attributes[:'subtotal_amount']
       end
 
       if attributes.key?(:'product')
@@ -226,19 +281,11 @@ module VoucherifySdk
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      object_validator = EnumAttributeValidator.new('String', ["order_item"])
+      return false unless object_validator.valid?(@object)
       related_object_validator = EnumAttributeValidator.new('String', ["product", "sku"])
       return false unless related_object_validator.valid?(@related_object)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] related_object Object to be assigned
-    def related_object=(related_object)
-      validator = EnumAttributeValidator.new('String', ["product", "sku"])
-      unless validator.valid?(related_object)
-        fail ArgumentError, "invalid value for \"related_object\", must be one of #{validator.allowable_values}."
-      end
-      @related_object = related_object
     end
 
     # Checks equality by comparing each attribute.
@@ -246,6 +293,7 @@ module VoucherifySdk
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          object == o.object &&
           sku_id == o.sku_id &&
           product_id == o.product_id &&
           related_object == o.related_object &&
@@ -256,7 +304,12 @@ module VoucherifySdk
           amount == o.amount &&
           discount_amount == o.discount_amount &&
           initial_amount == o.initial_amount &&
+          applied_discount_amount == o.applied_discount_amount &&
+          applied_discount_quantity == o.applied_discount_quantity &&
+          applied_quantity == o.applied_quantity &&
+          applied_quantity_amount == o.applied_quantity_amount &&
           price == o.price &&
+          subtotal_amount == o.subtotal_amount &&
           product == o.product &&
           sku == o.sku &&
           metadata == o.metadata
@@ -271,7 +324,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sku_id, product_id, related_object, source_id, quantity, discount_quantity, initial_quantity, amount, discount_amount, initial_amount, price, product, sku, metadata].hash
+      [object, sku_id, product_id, related_object, source_id, quantity, discount_quantity, initial_quantity, amount, discount_amount, initial_amount, applied_discount_amount, applied_discount_quantity, applied_quantity, applied_quantity_amount, price, subtotal_amount, product, sku, metadata].hash
     end
 
     # Builds the object from hash

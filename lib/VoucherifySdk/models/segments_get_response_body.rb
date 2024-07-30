@@ -14,10 +14,27 @@ require 'date'
 require 'time'
 
 module VoucherifySdk
-  class ValidationsRedeemableSkippedDetails
-    attr_accessor :key
+  # Response body schema for **GET** `/v1/segments/{segmentId}`.
+  class SegmentsGetResponseBody
+    # Unique segment ID.
+    attr_accessor :id
 
-    attr_accessor :message
+    # Segment name.
+    attr_accessor :name
+
+    # Timestamp representing the date and time when the segment was created. The value is shown in the ISO 8601 format.
+    attr_accessor :created_at
+
+    # Describes whether the segment is dynamic (customers come in and leave based on set criteria) or static (manually selected customers).
+    attr_accessor :type
+
+    # Defines a set of criteria for an `auto-update` segment type.  
+    attr_accessor :filter
+
+    attr_accessor :initial_sync_status
+
+    # The type of the object represented by JSON. This object stores information about the customer segment.
+    attr_accessor :object
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -44,8 +61,13 @@ module VoucherifySdk
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'key' => :'key',
-        :'message' => :'message'
+        :'id' => :'id',
+        :'name' => :'name',
+        :'created_at' => :'created_at',
+        :'type' => :'type',
+        :'filter' => :'filter',
+        :'initial_sync_status' => :'initial_sync_status',
+        :'object' => :'object'
       }
     end
 
@@ -57,40 +79,72 @@ module VoucherifySdk
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'key' => :'String',
-        :'message' => :'String'
+        :'id' => :'String',
+        :'name' => :'String',
+        :'created_at' => :'Time',
+        :'type' => :'String',
+        :'filter' => :'Object',
+        :'initial_sync_status' => :'String',
+        :'object' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'key',
-        :'message'
+        :'id',
+        :'name',
+        :'created_at',
+        :'type',
+        :'filter',
+        :'initial_sync_status',
+        :'object'
       ])
+    end
+
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'Segment'
+      ]
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
-      if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `VoucherifySdk::ValidationsRedeemableSkippedDetails` initialize method"
-      end
-
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
-        if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `VoucherifySdk::ValidationsRedeemableSkippedDetails`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
-        end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'key')
-        self.key = attributes[:'key']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.key?(:'filter')
+        self.filter = attributes[:'filter']
+      end
+
+      if attributes.key?(:'initial_sync_status')
+        self.initial_sync_status = attributes[:'initial_sync_status']
+      end
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      else
+        self.object = 'segment'
       end
     end
 
@@ -106,19 +160,13 @@ module VoucherifySdk
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      key_validator = EnumAttributeValidator.new('String', ["applicable_redeemables_limit_exceeded", "applicable_redeemables_per_category_limit_exceeded", "applicable_exclusive_redeemables_limit_exceeded", "applicable_exclusive_redeemables_per_category_limit_exceeded", "exclusion_rules_not_met", "preceding_validation_failed"])
-      return false unless key_validator.valid?(@key)
+      type_validator = EnumAttributeValidator.new('String', ["auto-update", "static"])
+      return false unless type_validator.valid?(@type)
+      initial_sync_status_validator = EnumAttributeValidator.new('String', ["IN_PROGRESS", "DONE"])
+      return false unless initial_sync_status_validator.valid?(@initial_sync_status)
+      object_validator = EnumAttributeValidator.new('String', ["segment"])
+      return false unless object_validator.valid?(@object)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] key Object to be assigned
-    def key=(key)
-      validator = EnumAttributeValidator.new('String', ["applicable_redeemables_limit_exceeded", "applicable_redeemables_per_category_limit_exceeded", "applicable_exclusive_redeemables_limit_exceeded", "applicable_exclusive_redeemables_per_category_limit_exceeded", "exclusion_rules_not_met", "preceding_validation_failed"])
-      unless validator.valid?(key)
-        fail ArgumentError, "invalid value for \"key\", must be one of #{validator.allowable_values}."
-      end
-      @key = key
     end
 
     # Checks equality by comparing each attribute.
@@ -126,8 +174,13 @@ module VoucherifySdk
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          key == o.key &&
-          message == o.message
+          id == o.id &&
+          name == o.name &&
+          created_at == o.created_at &&
+          type == o.type &&
+          filter == o.filter &&
+          initial_sync_status == o.initial_sync_status &&
+          object == o.object
     end
 
     # @see the `==` method
@@ -139,7 +192,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [key, message].hash
+      [id, name, created_at, type, filter, initial_sync_status, object].hash
     end
 
     # Builds the object from hash

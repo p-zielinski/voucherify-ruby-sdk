@@ -12,4 +12,5 @@
 | **resource_type** | [**QualificationsOptionFiltersResourceType**](QualificationsOptionFiltersResourceType.md) |  | [optional] |
 | **voucher_type** | [**QualificationsFieldConditions**](QualificationsFieldConditions.md) |  | [optional] |
 | **code** | [**QualificationsFieldConditions**](QualificationsFieldConditions.md) |  | [optional] |
+| **holder_role** | [**HolderRole**](HolderRole.md) |  | [optional] |
 

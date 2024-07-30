@@ -35,7 +35,7 @@ module VoucherifySdk
     # How the publication was originated. It can be your own custom channel or an example value provided here.
     attr_accessor :channel
 
-    # The merchant’s publication ID if it is different from the Voucherify publication ID. It's an optional tracking identifier of a publication. It is really useful in case of an integration between multiple systems. It can be a publication ID from a CRM system, database or 3rd-party service. 
+    # The merchant's publication ID if it is different from the Voucherify publication ID. It's an optional tracking identifier of a publication. It is really useful in case of an integration between multiple systems. It can be a publication ID from a CRM system, database or 3rd-party service. 
     attr_accessor :source_id
 
     # Status of the publication attempt.
@@ -136,15 +136,8 @@ module VoucherifySdk
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
-      if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `VoucherifySdk::PublicationsCreateResponseBody` initialize method"
-      end
-
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
-        if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `VoucherifySdk::PublicationsCreateResponseBody`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
-        end
         h[k.to_sym] = v
       }
 
@@ -230,36 +223,6 @@ module VoucherifySdk
       result_validator = EnumAttributeValidator.new('String', ["SUCCESS"])
       return false unless result_validator.valid?(@result)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ["publication"])
-      unless validator.valid?(object)
-        fail ArgumentError, "invalid value for \"object\", must be one of #{validator.allowable_values}."
-      end
-      @object = object
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] channel Object to be assigned
-    def channel=(channel)
-      validator = EnumAttributeValidator.new('String', ["API"])
-      unless validator.valid?(channel)
-        fail ArgumentError, "invalid value for \"channel\", must be one of #{validator.allowable_values}."
-      end
-      @channel = channel
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] result Object to be assigned
-    def result=(result)
-      validator = EnumAttributeValidator.new('String', ["SUCCESS"])
-      unless validator.valid?(result)
-        fail ArgumentError, "invalid value for \"result\", must be one of #{validator.allowable_values}."
-      end
-      @result = result
     end
 
     # Checks equality by comparing each attribute.

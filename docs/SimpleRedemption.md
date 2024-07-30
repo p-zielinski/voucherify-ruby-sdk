@@ -13,6 +13,7 @@
 | **reward** | [**SimpleRedemptionRewardResult**](SimpleRedemptionRewardResult.md) |  | [optional] |
 | **customer** | [**SimpleCustomer**](SimpleCustomer.md) |  | [optional] |
 | **result** | **String** | Redemption result. | [optional] |
+| **status** | **String** |  | [optional] |
 | **voucher** | [**SimpleVoucher**](SimpleVoucher.md) |  | [optional] |
 | **promotion_tier** | [**SimplePromotionTier**](SimplePromotionTier.md) |  | [optional] |
 | **redemption** | **String** | Unique redemption ID of the parent redemption. | [optional] |
