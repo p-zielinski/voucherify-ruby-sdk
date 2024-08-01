@@ -10,7 +10,6 @@
 | **campaign_id** | **String** | Assigned by the Voucherify API, identifies the voucher&#39;s parent campaign. | [optional] |
 | **category** | **String** | Tag defining the category that this voucher belongs to. Useful when listing vouchers using the List Vouchers endpoint. | [optional] |
 | **category_id** | **String** | Unique category ID assigned by Voucherify. | [optional] |
-| **categories** | [**Array&lt;Category&gt;**](Category.md) | Contains details about the category. | [optional] |
 | **type** | **String** | Defines the type of the voucher.  | [optional] |
 | **discount** | [**Discount**](Discount.md) |  | [optional] |
 | **gift** | [**RedemptionsGetResponseBodyVoucherGift**](RedemptionsGetResponseBodyVoucherGift.md) |  | [optional] |
@@ -30,8 +29,9 @@
 | **holder_id** | **String** | Unique identifier of the customer who owns the voucher. | [optional] |
 | **referrer_id** | **String** | Unique identifier of the referring person. | [optional] |
 | **object** | **String** | The type of the object represented by JSON. Default is &#x60;voucher&#x60;. | [optional][default to &#39;voucher&#39;] |
-| **validation_rules_assignments** | [**ValidationRulesAssignmentsList**](ValidationRulesAssignmentsList.md) |  | [optional] |
 | **publish** | [**RedemptionsGetResponseBodyVoucherPublish**](RedemptionsGetResponseBodyVoucherPublish.md) |  | [optional] |
 | **redemption** | [**RedemptionsGetResponseBodyVoucherRedemption**](RedemptionsGetResponseBodyVoucherRedemption.md) |  | [optional] |
+| **categories** | [**Array&lt;Category&gt;**](Category.md) | Contains details about the category. | [optional] |
+| **validation_rules_assignments** | [**ValidationRulesAssignmentsList**](ValidationRulesAssignmentsList.md) |  | [optional] |
 | **holder** | [**SimpleCustomer**](SimpleCustomer.md) |  | [optional] |
 

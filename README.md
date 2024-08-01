@@ -163,6 +163,7 @@ Class | Method | HTTP request | Description
 *VoucherifySdk::CategoriesApi* | [**list_categories**](docs/CategoriesApi.md#list_categories) | **GET** /v1/categories | List Categories
 *VoucherifySdk::CategoriesApi* | [**update_category**](docs/CategoriesApi.md#update_category) | **PUT** /v1/categories/{categoryId} | Update Category
 *VoucherifySdk::ClientSideApi* | [**check_eligibility_client_side**](docs/ClientSideApi.md#check_eligibility_client_side) | **POST** /client/v1/qualifications | Check Eligibility (client-side)
+*VoucherifySdk::ClientSideApi* | [**list_promotion_tiers_client_side**](docs/ClientSideApi.md#list_promotion_tiers_client_side) | **GET** /client/v1/promotions/tiers | List Promotion Tiers (client-side)
 *VoucherifySdk::ClientSideApi* | [**redeem_stacked_discounts_client_side**](docs/ClientSideApi.md#redeem_stacked_discounts_client_side) | **POST** /client/v1/redemptions | Redeem Stackable Discounts (client-side)
 *VoucherifySdk::ClientSideApi* | [**track_custom_event_client_side**](docs/ClientSideApi.md#track_custom_event_client_side) | **POST** /client/v1/events | Track Custom Event (client-side)
 *VoucherifySdk::ClientSideApi* | [**update_customers_consents_client_side**](docs/ClientSideApi.md#update_customers_consents_client_side) | **PUT** /client/v1/customers/{customerId}/consents | Update Customer's consents (client-side)
@@ -246,6 +247,7 @@ Class | Method | HTTP request | Description
 *VoucherifySdk::PromotionsApi* | [**get_promotion_tier**](docs/PromotionsApi.md#get_promotion_tier) | **GET** /v1/promotions/tiers/{promotionTierId} | Get Promotion Tier
 *VoucherifySdk::PromotionsApi* | [**list_all_promotion_stacks**](docs/PromotionsApi.md#list_all_promotion_stacks) | **GET** /v1/promotions/stacks | List Promotion Stacks
 *VoucherifySdk::PromotionsApi* | [**list_promotion_stacks_in_campaign**](docs/PromotionsApi.md#list_promotion_stacks_in_campaign) | **GET** /v1/promotions/{campaignId}/stacks | List Promotion Stacks in Campaign
+*VoucherifySdk::PromotionsApi* | [**list_promotion_tiers**](docs/PromotionsApi.md#list_promotion_tiers) | **GET** /v1/promotions/tiers | List Promotion Tiers
 *VoucherifySdk::PromotionsApi* | [**list_promotion_tiers_from_campaign**](docs/PromotionsApi.md#list_promotion_tiers_from_campaign) | **GET** /v1/promotions/{campaignId}/tiers | List Promotion Tiers from Campaign
 *VoucherifySdk::PromotionsApi* | [**update_promotion_stack**](docs/PromotionsApi.md#update_promotion_stack) | **PUT** /v1/promotions/{campaignId}/stacks/{stackId} | Update Promotion Stack
 *VoucherifySdk::PromotionsApi* | [**update_promotion_tier**](docs/PromotionsApi.md#update_promotion_tier) | **PUT** /v1/promotions/tiers/{promotionTierId} | Update Promotion Tier
@@ -289,6 +291,7 @@ Class | Method | HTTP request | Description
 *VoucherifySdk::VouchersApi* | [**get_voucher**](docs/VouchersApi.md#get_voucher) | **GET** /v1/vouchers/{code} | Get Voucher
 *VoucherifySdk::VouchersApi* | [**import_vouchers_using_csv**](docs/VouchersApi.md#import_vouchers_using_csv) | **POST** /v1/vouchers/importCSV | Import Vouchers using CSV
 *VoucherifySdk::VouchersApi* | [**list_voucher_transactions**](docs/VouchersApi.md#list_voucher_transactions) | **GET** /v1/vouchers/{code}/transactions | List Voucher Transactions
+*VoucherifySdk::VouchersApi* | [**list_vouchers**](docs/VouchersApi.md#list_vouchers) | **GET** /v1/vouchers | List Vouchers
 *VoucherifySdk::VouchersApi* | [**release_validation_session**](docs/VouchersApi.md#release_validation_session) | **DELETE** /v1/vouchers/{code}/sessions/{sessionKey} | Release Validation Session
 *VoucherifySdk::VouchersApi* | [**update_voucher_balance**](docs/VouchersApi.md#update_voucher_balance) | **POST** /v1/vouchers/{code}/balance | Add or Remove Voucher Balance
 
@@ -350,6 +353,7 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::ClientEventsCreateRequestBodyLoyalty](docs/ClientEventsCreateRequestBodyLoyalty.md)
  - [VoucherifySdk::ClientEventsCreateRequestBodyReferral](docs/ClientEventsCreateRequestBodyReferral.md)
  - [VoucherifySdk::ClientEventsCreateResponseBody](docs/ClientEventsCreateResponseBody.md)
+ - [VoucherifySdk::ClientPromotionsTiersListResponseBody](docs/ClientPromotionsTiersListResponseBody.md)
  - [VoucherifySdk::ClientQualificationsCheckEligibilityRequestBody](docs/ClientQualificationsCheckEligibilityRequestBody.md)
  - [VoucherifySdk::ClientQualificationsCheckEligibilityResponseBody](docs/ClientQualificationsCheckEligibilityResponseBody.md)
  - [VoucherifySdk::ClientRedemptionsRedeemRequestBody](docs/ClientRedemptionsRedeemRequestBody.md)
@@ -596,10 +600,13 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::ParameterOrderListExports](docs/ParameterOrderListExports.md)
  - [VoucherifySdk::ParameterOrderListLoyaltyTiers](docs/ParameterOrderListLoyaltyTiers.md)
  - [VoucherifySdk::ParameterOrderListOrders](docs/ParameterOrderListOrders.md)
+ - [VoucherifySdk::ParameterOrderListPromotionTiers](docs/ParameterOrderListPromotionTiers.md)
+ - [VoucherifySdk::ParameterOrderListPromotionTiersClientSide](docs/ParameterOrderListPromotionTiersClientSide.md)
  - [VoucherifySdk::ParameterOrderListPublications](docs/ParameterOrderListPublications.md)
  - [VoucherifySdk::ParameterOrderListRedemptions](docs/ParameterOrderListRedemptions.md)
  - [VoucherifySdk::ParameterOrderListValidationRuleAssignments](docs/ParameterOrderListValidationRuleAssignments.md)
  - [VoucherifySdk::ParameterOrderListValidationRules](docs/ParameterOrderListValidationRules.md)
+ - [VoucherifySdk::ParameterOrderVouchers](docs/ParameterOrderVouchers.md)
  - [VoucherifySdk::ParameterResultListPublications](docs/ParameterResultListPublications.md)
  - [VoucherifySdk::ParameterUpdatedBeforeAfter](docs/ParameterUpdatedBeforeAfter.md)
  - [VoucherifySdk::ParameterVoucherTypeListPublications](docs/ParameterVoucherTypeListPublications.md)
@@ -812,14 +819,17 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::RewardsAssignmentsUpdateRequestBodyParametersLoyalty](docs/RewardsAssignmentsUpdateRequestBodyParametersLoyalty.md)
  - [VoucherifySdk::RewardsAssignmentsUpdateResponseBody](docs/RewardsAssignmentsUpdateResponseBody.md)
  - [VoucherifySdk::RewardsCreateRequestBody](docs/RewardsCreateRequestBody.md)
+ - [VoucherifySdk::RewardsCreateRequestBodyAttributes](docs/RewardsCreateRequestBodyAttributes.md)
  - [VoucherifySdk::RewardsCreateRequestBodyParameters](docs/RewardsCreateRequestBodyParameters.md)
  - [VoucherifySdk::RewardsCreateRequestBodyParametersCampaign](docs/RewardsCreateRequestBodyParametersCampaign.md)
  - [VoucherifySdk::RewardsCreateRequestBodyParametersCoin](docs/RewardsCreateRequestBodyParametersCoin.md)
  - [VoucherifySdk::RewardsCreateRequestBodyParametersProduct](docs/RewardsCreateRequestBodyParametersProduct.md)
+ - [VoucherifySdk::RewardsCreateResponseBody](docs/RewardsCreateResponseBody.md)
  - [VoucherifySdk::RewardsListResponseBody](docs/RewardsListResponseBody.md)
  - [VoucherifySdk::RewardsUpdateRequestBody](docs/RewardsUpdateRequestBody.md)
  - [VoucherifySdk::RewardsUpdateRequestBodyParameters](docs/RewardsUpdateRequestBodyParameters.md)
  - [VoucherifySdk::RewardsUpdateRequestBodyParametersCampaign](docs/RewardsUpdateRequestBodyParametersCampaign.md)
+ - [VoucherifySdk::RewardsUpdateResponseBody](docs/RewardsUpdateResponseBody.md)
  - [VoucherifySdk::Segment](docs/Segment.md)
  - [VoucherifySdk::SegmentsCreateRequestBody](docs/SegmentsCreateRequestBody.md)
  - [VoucherifySdk::SegmentsCreateResponseBody](docs/SegmentsCreateResponseBody.md)
@@ -902,6 +912,7 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::ValidityTimeframe](docs/ValidityTimeframe.md)
  - [VoucherifySdk::Voucher](docs/Voucher.md)
  - [VoucherifySdk::VoucherAssets](docs/VoucherAssets.md)
+ - [VoucherifySdk::VoucherBase](docs/VoucherBase.md)
  - [VoucherifySdk::VoucherHolder](docs/VoucherHolder.md)
  - [VoucherifySdk::VoucherTransaction](docs/VoucherTransaction.md)
  - [VoucherifySdk::VoucherTransactionDetails](docs/VoucherTransactionDetails.md)
@@ -925,6 +936,7 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::VoucherTransactionsExportParameters](docs/VoucherTransactionsExportParameters.md)
  - [VoucherifySdk::VoucherTransactionsExportResult](docs/VoucherTransactionsExportResult.md)
  - [VoucherifySdk::VoucherTransactionsFilters](docs/VoucherTransactionsFilters.md)
+ - [VoucherifySdk::VoucherWithCategories](docs/VoucherWithCategories.md)
  - [VoucherifySdk::VouchersBalanceUpdateRequestBody](docs/VouchersBalanceUpdateRequestBody.md)
  - [VoucherifySdk::VouchersBalanceUpdateResponseBody](docs/VouchersBalanceUpdateResponseBody.md)
  - [VoucherifySdk::VouchersBalanceUpdateResponseBodyRelatedObject](docs/VouchersBalanceUpdateResponseBodyRelatedObject.md)
@@ -932,6 +944,7 @@ Class | Method | HTTP request | Description
  - [VoucherifySdk::VouchersEnableResponseBody](docs/VouchersEnableResponseBody.md)
  - [VoucherifySdk::VouchersGetResponseBody](docs/VouchersGetResponseBody.md)
  - [VoucherifySdk::VouchersImportCsvCreateResponseBody](docs/VouchersImportCsvCreateResponseBody.md)
+ - [VoucherifySdk::VouchersListResponseBody](docs/VouchersListResponseBody.md)
  - [VoucherifySdk::VouchersRedemptionGetResponseBody](docs/VouchersRedemptionGetResponseBody.md)
  - [VoucherifySdk::VouchersTransactionsExportCreateRequestBody](docs/VouchersTransactionsExportCreateRequestBody.md)
  - [VoucherifySdk::VouchersTransactionsExportCreateResponseBody](docs/VouchersTransactionsExportCreateResponseBody.md)

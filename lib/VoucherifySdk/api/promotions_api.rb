@@ -636,6 +636,75 @@ module VoucherifySdk
       return data, status_code, headers
     end
 
+    # List Promotion Tiers
+    # This method enables you to list promotion tiers.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Boolean] :is_available This parameter allows filtering promotions that are only available at the moment. When set to true, it selects only non-expired and active promotions.
+    # @option opts [Integer] :limit Limits the number of objects to be returned. The limit can range between 1 and 100 items.
+    # @option opts [Integer] :page Which page of results to return. The lowest value is 1.
+    # @option opts [ParameterOrderListPromotionTiers] :order Sorts the results using one of the filtering options, where the dash - preceding a sorting option means sorting in a descending order.
+    # @return [PromotionsTiersListResponseBody]
+    def list_promotion_tiers(opts = {})
+      data, _status_code, _headers = list_promotion_tiers_with_http_info(opts)
+      data
+    end
+
+    # List Promotion Tiers
+    # This method enables you to list promotion tiers.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Boolean] :is_available This parameter allows filtering promotions that are only available at the moment. When set to true, it selects only non-expired and active promotions.
+    # @option opts [Integer] :limit Limits the number of objects to be returned. The limit can range between 1 and 100 items.
+    # @option opts [Integer] :page Which page of results to return. The lowest value is 1.
+    # @option opts [ParameterOrderListPromotionTiers] :order Sorts the results using one of the filtering options, where the dash - preceding a sorting option means sorting in a descending order.
+    # @return [Array<(PromotionsTiersListResponseBody, Integer, Hash)>] PromotionsTiersListResponseBody data, response status code and response headers
+    private def list_promotion_tiers_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PromotionsApi.list_promotion_tiers ...'
+      end
+      # resource path
+      local_var_path = '/v1/promotions/tiers'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'is_available'] = opts[:'is_available'] if !opts[:'is_available'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'order'] = opts[:'order'] if !opts[:'order'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PromotionsTiersListResponseBody'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['X-App-Id', 'X-App-Token']
+
+      new_options = opts.merge(
+        :operation => :"PromotionsApi.list_promotion_tiers",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PromotionsApi#list_promotion_tiers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # List Promotion Tiers from Campaign
     # This method enables you to list promotion tiers from a specified campaign.
     # @param campaign_id [String] Unique campaign ID assigned by Voucherify.

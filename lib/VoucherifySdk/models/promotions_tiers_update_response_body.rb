@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module VoucherifySdk
-  # Response body schema for **put** `/promotions/tiers/{promotionTierId}`.
+  # Response body schema for **PUT** `/promotions/tiers/{promotionTierId}`.
   class PromotionsTiersUpdateResponseBody
     # Unique promotion tier ID.
     attr_accessor :id

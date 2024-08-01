@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module VoucherifySdk
-  # Response body schema for **GET** `/promotions/{campaignId}/tiers`.
+  # Response body schema for **GET** `/promotions/{campaignId}/tiers` and **GET** `/promotions/tiers`.
   class PromotionsTiersListResponseBody
     # The type of the object represented by JSON. This object stores information about promotion tiers in a dictionary.
     attr_accessor :object

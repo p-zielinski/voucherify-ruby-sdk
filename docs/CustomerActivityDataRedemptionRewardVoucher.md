@@ -10,7 +10,6 @@
 | **campaign_id** | **String** |  | [optional] |
 | **category** | **String** | Tag defining the category that this voucher belongs to. Useful when listing vouchers using the List Vouchers endpoint. | [optional] |
 | **category_id** | **String** |  | [optional] |
-| **categories** | [**Array&lt;Category&gt;**](Category.md) | Contains details about the category. | [optional] |
 | **type** | **String** |  | [optional] |
 | **discount** | [**Discount**](Discount.md) |  | [optional] |
 | **gift** | [**CustomerActivityDataRedemptionRewardVoucherGift**](CustomerActivityDataRedemptionRewardVoucherGift.md) |  | [optional] |
@@ -30,7 +29,8 @@
 | **holder_id** | **String** |  | [optional] |
 | **referrer_id** | **String** |  | [optional] |
 | **object** | **String** |  | [optional] |
-| **validation_rules_assignments** | [**ValidationRulesAssignmentsList**](ValidationRulesAssignmentsList.md) |  | [optional] |
 | **publish** | [**CustomerActivityDataRedemptionRewardVoucherPublish**](CustomerActivityDataRedemptionRewardVoucherPublish.md) |  | [optional] |
 | **redemption** | [**CustomerActivityDataRedemptionRewardVoucherRedemption**](CustomerActivityDataRedemptionRewardVoucherRedemption.md) |  | [optional] |
+| **categories** | [**Array&lt;Category&gt;**](Category.md) | Contains details about the category. | [optional] |
+| **validation_rules_assignments** | [**ValidationRulesAssignmentsList**](ValidationRulesAssignmentsList.md) |  | [optional] |
 

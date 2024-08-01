@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module VoucherifySdk
-  # Request Body schema for **put** `/promotions/{campaignId}/stacks/{stackId}`.
+  # Request Body schema for **PUT** `/promotions/{campaignId}/stacks/{stackId}`.
   class PromotionsStacksUpdateRequestBody
     # Promotion stack name.
     attr_accessor :name

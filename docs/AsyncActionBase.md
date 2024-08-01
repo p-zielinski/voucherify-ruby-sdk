@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Async action unique ID. | [optional] |
-| **type** | **String** | Type of async action. Examples: \&quot;CAMPAIGN.VOUCHERS_IMPORT\&quot;, \&quot;CAMPAIGN.VOUCHERS_IMPORT_CSV\&quot;, \&quot;CAMPAIGN.VOUCHERS_UPDATE\&quot;, \&quot;CAMPAIGN.VOUCHERS_DELETE\&quot;, \&quot;CAMPAIGN.VOUCHERS_GENERATE\&quot;, \&quot;CAMPAIGNS.METADATA_KEY_PURGE\&quot;, \&quot;CUSTOMERS.IMPORT_CSV\&quot;, \&quot;CUSTOMERS.BULK_UPDATE\&quot;, \&quot;CUSTOMERS.METADATA_UPDATE\&quot;, \&quot;CUSTOMERS.METADATA_KEY_PURGE\&quot;, \&quot;PRODUCTS.BULK_UPDATE\&quot;, \&quot;PRODUCTS.METADATA_UPDATE\&quot;, \&quot;PRODUCTS.METADATA_KEY_PURGE\&quot;, \&quot;PRODUCTS.IMPORT_CSV\&quot;, \&quot;SKUS.IMPORT_CSV\&quot;, \&quot;VOUCHERS.IMPORT\&quot;, \&quot;VOUCHERS.IMPORT_CSV\&quot;, \&quot;VOUCHERS.BULK_UPDATE\&quot;, \&quot;VOUCHERS.METADATA_UPDATE\&quot;, \&quot;VOUCHERS.METADATA_KEY_PURGE\&quot;, \&quot;ORDERS.IMPORT\&quot;, \&quot;ORDERS.METADATA_KEY_PURGE\&quot; | [optional] |
+| **type** | **String** | Type of async action. | [optional] |
 | **status** | **String** | Status of async action. Informs you whether the async action has already been completed. | [optional] |
 | **operation_status** | **String** | Status of async action processing. Informs about the async action status, whether it failed, succeeded, or the status is unknown. Examples: \&quot;FAILED\&quot;, \&quot;SUCCESS\&quot; | [optional] |
 | **created_at** | **Time** | Timestamp representing the date and time when the async action was scheduled in ISO 8601 format. | [optional] |

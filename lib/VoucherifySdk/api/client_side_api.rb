@@ -83,6 +83,78 @@ module VoucherifySdk
       return data, status_code, headers
     end
 
+    # List Promotion Tiers (client-side)
+    # This method enables you to list promotion tiers.
+    # @param origin [String] Indicates the origin (scheme, hostname, and port).
+    # @param [Hash] opts the optional parameters
+    # @option opts [Boolean] :is_available This parameter allows filtering promotions that are only available at the moment. When set to true, it selects only non-expired and active promotions.
+    # @option opts [Integer] :limit Limits the number of objects to be returned. The limit can range between 1 and 100 items.
+    # @option opts [Integer] :page Which page of results to return. The lowest value is 1.
+    # @option opts [ParameterOrderListPromotionTiersClientSide] :order Sorts the results using one of the filtering options, where the dash - preceding a sorting option means sorting in a descending order.
+    # @return [ClientPromotionsTiersListResponseBody]
+    def list_promotion_tiers_client_side(origin, opts = {})
+      data, _status_code, _headers = list_promotion_tiers_client_side_with_http_info(origin, opts)
+      data
+    end
+
+    # List Promotion Tiers (client-side)
+    # This method enables you to list promotion tiers.
+    # @param origin [String] Indicates the origin (scheme, hostname, and port).
+    # @param [Hash] opts the optional parameters
+    # @option opts [Boolean] :is_available This parameter allows filtering promotions that are only available at the moment. When set to true, it selects only non-expired and active promotions.
+    # @option opts [Integer] :limit Limits the number of objects to be returned. The limit can range between 1 and 100 items.
+    # @option opts [Integer] :page Which page of results to return. The lowest value is 1.
+    # @option opts [ParameterOrderListPromotionTiersClientSide] :order Sorts the results using one of the filtering options, where the dash - preceding a sorting option means sorting in a descending order.
+    # @return [Array<(ClientPromotionsTiersListResponseBody, Integer, Hash)>] ClientPromotionsTiersListResponseBody data, response status code and response headers
+    private def list_promotion_tiers_client_side_with_http_info(origin, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ClientSideApi.list_promotion_tiers_client_side ...'
+      end
+      # resource path
+      local_var_path = '/client/v1/promotions/tiers'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'is_available'] = opts[:'is_available'] if !opts[:'is_available'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'order'] = opts[:'order'] if !opts[:'order'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'origin'] = origin
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'ClientPromotionsTiersListResponseBody'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['X-Client-Application-Id', 'X-Client-Token']
+
+      new_options = opts.merge(
+        :operation => :"ClientSideApi.list_promotion_tiers_client_side",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ClientSideApi#list_promotion_tiers_client_side\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Redeem Stackable Discounts (client-side)
     # This method is accessible through public keys which you can use in client side requests coming from mobile and web browser applications. # How API returns calculated discounts and order amounts in the response In the table below, you can see the logic the API follows to calculate discounts and amounts:    📘 Rollbacks  You cant roll back a child redemption. When you call rollback on a stacked redemption, all child redemptions will be rolled back. You need to refer to a parent redemption ID in your rollback request.
     # @param origin [String] Indicates the origin (scheme, hostname, and port).

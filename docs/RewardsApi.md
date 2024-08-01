@@ -18,7 +18,7 @@ All URIs are relative to *https://api.voucherify.io*
 
 ## create_reward
 
-> <Reward> create_reward(opts)
+> <RewardsCreateResponseBody> create_reward(opts)
 
 Create Reward
 
@@ -64,7 +64,7 @@ end
 
 ### Return type
 
-[**Reward**](Reward.md)
+[**RewardsCreateResponseBody**](RewardsCreateResponseBody.md)
 
 ### Authorization
 
@@ -502,7 +502,7 @@ end
 
 ## update_reward
 
-> <Reward> update_reward(reward_id, opts)
+> <RewardsUpdateResponseBody> update_reward(reward_id, opts)
 
 Update Reward
 
@@ -550,7 +550,7 @@ end
 
 ### Return type
 
-[**Reward**](Reward.md)
+[**RewardsUpdateResponseBody**](RewardsUpdateResponseBody.md)
 
 ### Authorization
 

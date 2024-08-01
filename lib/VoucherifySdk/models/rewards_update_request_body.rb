@@ -20,21 +20,21 @@ module VoucherifySdk
 
     attr_accessor :parameters
 
-    attr_accessor :attributes
-
     attr_accessor :metadata
 
     # The number of units of the product that you want to share as a reward.
     attr_accessor :stock
+
+    attr_accessor :attributes
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
         :'parameters' => :'parameters',
-        :'attributes' => :'attributes',
         :'metadata' => :'metadata',
-        :'stock' => :'stock'
+        :'stock' => :'stock',
+        :'attributes' => :'attributes'
       }
     end
 
@@ -48,9 +48,9 @@ module VoucherifySdk
       {
         :'name' => :'String',
         :'parameters' => :'RewardsUpdateRequestBodyParameters',
-        :'attributes' => :'Object',
         :'metadata' => :'Object',
-        :'stock' => :'Integer'
+        :'stock' => :'Integer',
+        :'attributes' => :'RewardsCreateRequestBodyAttributes'
       }
     end
 
@@ -59,9 +59,9 @@ module VoucherifySdk
       Set.new([
         :'name',
         :'parameters',
-        :'attributes',
         :'metadata',
-        :'stock'
+        :'stock',
+        :'attributes'
       ])
     end
 
@@ -81,16 +81,16 @@ module VoucherifySdk
         self.parameters = attributes[:'parameters']
       end
 
-      if attributes.key?(:'attributes')
-        self.attributes = attributes[:'attributes']
-      end
-
       if attributes.key?(:'metadata')
         self.metadata = attributes[:'metadata']
       end
 
       if attributes.key?(:'stock')
         self.stock = attributes[:'stock']
+      end
+
+      if attributes.key?(:'attributes')
+        self.attributes = attributes[:'attributes']
       end
     end
 
@@ -116,9 +116,9 @@ module VoucherifySdk
       self.class == o.class &&
           name == o.name &&
           parameters == o.parameters &&
-          attributes == o.attributes &&
           metadata == o.metadata &&
-          stock == o.stock
+          stock == o.stock &&
+          attributes == o.attributes
     end
 
     # @see the `==` method
@@ -130,7 +130,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, parameters, attributes, metadata, stock].hash
+      [name, parameters, metadata, stock, attributes].hash
     end
 
     # Builds the object from hash

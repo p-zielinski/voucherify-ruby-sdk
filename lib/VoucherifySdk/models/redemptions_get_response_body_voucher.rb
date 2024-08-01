@@ -33,9 +33,6 @@ module VoucherifySdk
     # Unique category ID assigned by Voucherify.
     attr_accessor :category_id
 
-    # Contains details about the category.
-    attr_accessor :categories
-
     # Defines the type of the voucher. 
     attr_accessor :type
 
@@ -86,11 +83,14 @@ module VoucherifySdk
     # The type of the object represented by JSON. Default is `voucher`.
     attr_accessor :object
 
-    attr_accessor :validation_rules_assignments
-
     attr_accessor :publish
 
     attr_accessor :redemption
+
+    # Contains details about the category.
+    attr_accessor :categories
+
+    attr_accessor :validation_rules_assignments
 
     attr_accessor :holder
 
@@ -125,7 +125,6 @@ module VoucherifySdk
         :'campaign_id' => :'campaign_id',
         :'category' => :'category',
         :'category_id' => :'category_id',
-        :'categories' => :'categories',
         :'type' => :'type',
         :'discount' => :'discount',
         :'gift' => :'gift',
@@ -145,9 +144,10 @@ module VoucherifySdk
         :'holder_id' => :'holder_id',
         :'referrer_id' => :'referrer_id',
         :'object' => :'object',
-        :'validation_rules_assignments' => :'validation_rules_assignments',
         :'publish' => :'publish',
         :'redemption' => :'redemption',
+        :'categories' => :'categories',
+        :'validation_rules_assignments' => :'validation_rules_assignments',
         :'holder' => :'holder'
       }
     end
@@ -166,7 +166,6 @@ module VoucherifySdk
         :'campaign_id' => :'String',
         :'category' => :'String',
         :'category_id' => :'String',
-        :'categories' => :'Array<Category>',
         :'type' => :'String',
         :'discount' => :'Discount',
         :'gift' => :'RedemptionsGetResponseBodyVoucherGift',
@@ -186,9 +185,10 @@ module VoucherifySdk
         :'holder_id' => :'String',
         :'referrer_id' => :'String',
         :'object' => :'String',
-        :'validation_rules_assignments' => :'ValidationRulesAssignmentsList',
         :'publish' => :'RedemptionsGetResponseBodyVoucherPublish',
         :'redemption' => :'RedemptionsGetResponseBodyVoucherRedemption',
+        :'categories' => :'Array<Category>',
+        :'validation_rules_assignments' => :'ValidationRulesAssignmentsList',
         :'holder' => :'SimpleCustomer'
       }
     end
@@ -202,7 +202,6 @@ module VoucherifySdk
         :'campaign_id',
         :'category',
         :'category_id',
-        :'categories',
         :'type',
         :'gift',
         :'loyalty_card',
@@ -219,6 +218,7 @@ module VoucherifySdk
         :'object',
         :'publish',
         :'redemption',
+        :'categories',
       ])
     end
 
@@ -252,12 +252,6 @@ module VoucherifySdk
 
       if attributes.key?(:'category_id')
         self.category_id = attributes[:'category_id']
-      end
-
-      if attributes.key?(:'categories')
-        if (value = attributes[:'categories']).is_a?(Array)
-          self.categories = value
-        end
       end
 
       if attributes.key?(:'type')
@@ -340,16 +334,22 @@ module VoucherifySdk
         self.object = 'voucher'
       end
 
-      if attributes.key?(:'validation_rules_assignments')
-        self.validation_rules_assignments = attributes[:'validation_rules_assignments']
-      end
-
       if attributes.key?(:'publish')
         self.publish = attributes[:'publish']
       end
 
       if attributes.key?(:'redemption')
         self.redemption = attributes[:'redemption']
+      end
+
+      if attributes.key?(:'categories')
+        if (value = attributes[:'categories']).is_a?(Array)
+          self.categories = value
+        end
+      end
+
+      if attributes.key?(:'validation_rules_assignments')
+        self.validation_rules_assignments = attributes[:'validation_rules_assignments']
       end
 
       if attributes.key?(:'holder')
@@ -385,7 +385,6 @@ module VoucherifySdk
           campaign_id == o.campaign_id &&
           category == o.category &&
           category_id == o.category_id &&
-          categories == o.categories &&
           type == o.type &&
           discount == o.discount &&
           gift == o.gift &&
@@ -405,9 +404,10 @@ module VoucherifySdk
           holder_id == o.holder_id &&
           referrer_id == o.referrer_id &&
           object == o.object &&
-          validation_rules_assignments == o.validation_rules_assignments &&
           publish == o.publish &&
           redemption == o.redemption &&
+          categories == o.categories &&
+          validation_rules_assignments == o.validation_rules_assignments &&
           holder == o.holder
     end
 
@@ -420,7 +420,7 @@ module VoucherifySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, code, campaign, campaign_id, category, category_id, categories, type, discount, gift, loyalty_card, start_date, expiration_date, validity_timeframe, validity_day_of_week, validity_hours, active, additional_info, metadata, assets, is_referral_code, created_at, updated_at, holder_id, referrer_id, object, validation_rules_assignments, publish, redemption, holder].hash
+      [id, code, campaign, campaign_id, category, category_id, type, discount, gift, loyalty_card, start_date, expiration_date, validity_timeframe, validity_day_of_week, validity_hours, active, additional_info, metadata, assets, is_referral_code, created_at, updated_at, holder_id, referrer_id, object, publish, redemption, categories, validation_rules_assignments, holder].hash
     end
 
     # Builds the object from hash

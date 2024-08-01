@@ -23,7 +23,7 @@ module VoucherifySdk
     # Create a new reward.
     # @param [Hash] opts the optional parameters
     # @option opts [RewardsCreateRequestBody] :rewards_create_request_body Define parameters of the new reward.
-    # @return [Reward]
+    # @return [RewardsCreateResponseBody]
     def create_reward(opts = {})
       data, _status_code, _headers = create_reward_with_http_info(opts)
       data
@@ -33,7 +33,7 @@ module VoucherifySdk
     # Create a new reward.
     # @param [Hash] opts the optional parameters
     # @option opts [RewardsCreateRequestBody] :rewards_create_request_body Define parameters of the new reward.
-    # @return [Array<(Reward, Integer, Hash)>] Reward data, response status code and response headers
+    # @return [Array<(RewardsCreateResponseBody, Integer, Hash)>] RewardsCreateResponseBody data, response status code and response headers
     private def create_reward_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: RewardsApi.create_reward ...'
@@ -61,7 +61,7 @@ module VoucherifySdk
       post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'rewards_create_request_body'])
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Reward'
+      return_type = opts[:debug_return_type] || 'RewardsCreateResponseBody'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['X-App-Id', 'X-App-Token']
@@ -521,7 +521,7 @@ module VoucherifySdk
     # @param reward_id [String] A unique reward ID.
     # @param [Hash] opts the optional parameters
     # @option opts [RewardsUpdateRequestBody] :rewards_update_request_body Define the parameters to be updated for the reward.
-    # @return [Reward]
+    # @return [RewardsUpdateResponseBody]
     def update_reward(reward_id, opts = {})
       data, _status_code, _headers = update_reward_with_http_info(reward_id, opts)
       data
@@ -532,7 +532,7 @@ module VoucherifySdk
     # @param reward_id [String] A unique reward ID.
     # @param [Hash] opts the optional parameters
     # @option opts [RewardsUpdateRequestBody] :rewards_update_request_body Define the parameters to be updated for the reward.
-    # @return [Array<(Reward, Integer, Hash)>] Reward data, response status code and response headers
+    # @return [Array<(RewardsUpdateResponseBody, Integer, Hash)>] RewardsUpdateResponseBody data, response status code and response headers
     private def update_reward_with_http_info(reward_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: RewardsApi.update_reward ...'
@@ -560,7 +560,7 @@ module VoucherifySdk
       post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'rewards_update_request_body'])
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Reward'
+      return_type = opts[:debug_return_type] || 'RewardsUpdateResponseBody'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['X-App-Id', 'X-App-Token']
