@@ -19,7 +19,6 @@ api_instance = VoucherifySdk::CampaignsApi.new
 # Calling list_campaigns
 begin
     result = api_instance.list_campaigns()
-    puts result
 rescue VoucherifySdk::ApiError => e
     puts "Exception when calling VouchersApi->list_campaigns: #{e}"
 end

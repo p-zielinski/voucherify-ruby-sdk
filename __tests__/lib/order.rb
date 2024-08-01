@@ -49,7 +49,6 @@ def update_order(order_api_instance, orderId)
   return updated_order
 
   rescue VoucherifySdk::ApiError => e
-    puts e
     return nil
 end
 

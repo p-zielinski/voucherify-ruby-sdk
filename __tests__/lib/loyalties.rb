@@ -12,7 +12,6 @@ def update_loyalty_card_balance(loyalties_api_instance, memberId)
     return updated_loyalty_member_card
 
   rescue VoucherifySdk::ApiError => e
-    puts e
     retun nil
   end
 end

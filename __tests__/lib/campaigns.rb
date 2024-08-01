@@ -142,7 +142,6 @@ def add_vouchers_to_campaign(campaigns_api_instance, campaign_id, voucher_count)
   
       return vouchers
     rescue VoucherifySdk::ApiError => e
-      puts e
       return nil
     end
   end

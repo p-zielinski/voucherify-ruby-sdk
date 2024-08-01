@@ -22,7 +22,6 @@ RSpec.describe 'Validation Rules API', :order => :defined do
     created_validation_rule_assignment = @validation_rules_api_instance.create_validation_rule_assignment(validation_rule.id, {
         validation_rules_assignments_create_request_body: validationRulesAssignmentsCreateRequestBody
     })
-    puts created_validation_rule_assignment, 'RULE ASSIGNMENT'
     snapshot_name = 'validation_rules/created_validation_rule_assignment'
       keys_to_remove = ['id', 'rule_id', 'related_object_id', 'created_at']
       filtered_snapshot, filtered_result = validate_payloads(snapshot_name, created_validation_rule_assignment, keys_to_remove)

@@ -42,7 +42,6 @@ def validate_stacked_discounts(validations_api_instance, voucher_ids, product_id
     })
     return result;
   rescue VoucherifySdk::ApiError => e
-    puts(e)
     return nil;
   end
 end
